@@ -9,8 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.DarkFullscreen">
-        <activity android:name="com.caramba.simplecalculator.MainActivity"
-             android:screenOrientation="portrait">
+        <activity android:name="com.caramba.simplecalculator.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

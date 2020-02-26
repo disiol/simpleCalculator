@@ -39,9 +39,6 @@ public class MainActivity extends AppCompatActivity {
     private Button button_interest;
     private Button button_point;
 
-    private int operator = DONT_HAWE_OPERATOR;
-    ;
-
 
     /**
      * Результат который заносится в масив для обработки
@@ -58,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
      */
     float number2;
 
+    int currentOperation = 0;
+    int nextOperation;
 
     /**
      * Прибавление
@@ -86,8 +85,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     final static int CLEAR = 1;
-    final static int DONT_HAWE_OPERATOR = 0;
-
+    final static int DONT_CLEAR = 0;
     int clearCalcDisplay = 0;
 
     private static final String TAG = "myLogs";//тег для лога
@@ -98,12 +96,18 @@ public class MainActivity extends AppCompatActivity {
     private String answer;//записываетса ответ
 
 
+    // ключи для сохранеия состояния переменых
+    private static final String KEY_HISTORY = "HISTORY";
+    private static final String KEY_INPUT = "INPUT";
+    private static final String KEY_ANSWER = "ANSWER";
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.calculator_layout);
         //находим елементы по индификатору
-        textViewInput = findViewById(R.id.textViewInput);
+        textViewInput = (TextView) findViewById(R.id.textViewInput);
         textViewAnswer = (TextView) findViewById(R.id.textViewAnswer);
         textViewHistory = (TextView) findViewById(R.id.textViewHistory);
         button_0 = (Button) findViewById(R.id.button_0);
@@ -121,14 +125,35 @@ public class MainActivity extends AppCompatActivity {
         button_multiply = (Button) findViewById(R.id.button_multiply);
         button_minus = (Button) findViewById(R.id.button_minus);
         button_plus = (Button) findViewById(R.id.button_plus);
+        button_equals = (Button) findViewById(R.id.button_equals);
         button_Clear = (Button) findViewById(R.id.button_Clear);
         button_del = (Button) findViewById(R.id.button_del);
         button_interest = (Button) findViewById(R.id.button_interest);
         button_point = (Button) findViewById(R.id.button_point);
 
 
+        if (savedInstanceState != null) {
+            answer = savedInstanceState.getString(KEY_ANSWER, String.valueOf(0));
+            textViewAnswer.setText(answer);
+
+            input = savedInstanceState.getString(KEY_INPUT, String.valueOf(0));
+            textViewInput.setText(input);
+
+            history = savedInstanceState.getString(KEY_HISTORY, String.valueOf(0));
+            textViewHistory.setText(history);
+        }
+
+
     }
 
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString(KEY_ANSWER, answer);
+        outState.putString(KEY_INPUT, input);
+        outState.putString(KEY_HISTORY, history);
+    }
 
     //обробатываем нажатия кнопок
 
@@ -136,6 +161,7 @@ public class MainActivity extends AppCompatActivity {
 
         //TODO history
         Log.d(TAG, "Оброботаем нажатие кнопки"); //выводит лог в Logcat
+//        CharSequence text = textViewInput.getText();
 
         switch (view.getId()) {
 
@@ -281,10 +307,6 @@ public class MainActivity extends AppCompatActivity {
                 }
                 break;
 
-            case R.id.button_Clear:
-                clearAll();
-
-                break;
             case R.id.button_del:
                 input = textViewInput.getText().toString();
                 if (input.length() != 0) {
@@ -295,19 +317,14 @@ public class MainActivity extends AppCompatActivity {
                 //TODO
                 break;
 
+            case R.id.button_Clear:
+                clearAll();
+
+                break;
+
             case R.id.button_plus:
                 if (input.length() != 0) {
-                    result.add(Float.valueOf(input));
-                    if (result.size() == 1 && operator == DONT_HAWE_OPERATOR) {
-                        operator = ADD;
-                    } else if (result.size() == 2 && operator != DONT_HAWE_OPERATOR) {
-                        calcLogic(operator);
-
-                    }
-
-                    if (result.size() == 2 && operator == ADD) {
-                        calcLogic(ADD);
-                    }
+                    calcLogic(ADD);
                 }
                 textViewInput.append("+");
                 history += "+";
@@ -349,6 +366,22 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG, "Нажата кнопка *");
                 break;
 
+            case R.id.button_equals:
+                Log.d(TAG, "Нажата кнопка =");
+                try {
+
+                    if (textViewInput.getText().length() != 0) {
+
+                        calcLogic(EQUALS);
+                    }
+                } catch (Exception e) {
+                    textViewAnswer.setText("Oшибка!");
+                    Log.e(TAG, "ошибка: " + e);
+                }
+
+
+                break;
+
 
             default:
                 break;
@@ -357,21 +390,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void clearAll() {
-        result.clear();
-        textViewInput.setText("0");
-        textViewHistory.setText("");
-        textViewAnswer.setText("");
-        input = "";
-        history = "";
-        answer = "";
-    }
-
 
     private void clearDisplay() {
         if (clearCalcDisplay == CLEAR) {
             textViewInput.setText("");
-            result.clear();
 
         }
     }
@@ -391,19 +413,27 @@ public class MainActivity extends AppCompatActivity {
 
         try {
 
+            if (input != "") {
+                result.add(Float.valueOf(input));
+            }
 
+            if (operator != EQUALS) {
+                nextOperation = operator;
+            } else if (operator == EQUALS) {
+                nextOperation = 0;
+            }
 
-            switch (operator) {
+            switch (currentOperation) {
 
                 /*Прибавление*/
                 case ADD:
                     number1 = result.get(0);
                     number2 = result.get(1);
 
-
                     result.clear();
+                    result.add(number1 + number2);
 
-                    answer = String.valueOf(number1 + number2);
+                    answer = String.format("%.0f", result.get(0));
 
                     input = "";
                     input = answer;
@@ -416,7 +446,7 @@ public class MainActivity extends AppCompatActivity {
                     number1 = result.get(0);
                     number2 = result.get(1);
 
-                    result.removeAll(result);
+                    result.clear();
 
                     result.add(number1 - number2);
 
@@ -429,7 +459,7 @@ public class MainActivity extends AppCompatActivity {
                     number1 = result.get(0);
                     number2 = result.get(1);
 
-                    result.removeAll(result);
+                    result.clear();
 
                     result.add(number1 * number2);
 
@@ -441,8 +471,10 @@ public class MainActivity extends AppCompatActivity {
                     number1 = result.get(0);
                     number2 = result.get(1);
 
-                    result.removeAll(result);
+                    result.clear();
+
                     result.add(number1 / number2);
+
                     answer = String.format("%.0f", result.get(0));
                     textViewAnswer.setText(answer);
                     break;
@@ -450,11 +482,43 @@ public class MainActivity extends AppCompatActivity {
 
 
 //            clearCalcDisplay = CLEAR;
+            currentOperation = nextOperation;
+            if (operator == EQUALS) {
+                number1 = 0;
+                number2 = 0;
 
+                Float answerFloat = result.get(0);
+
+                answer = String.format("%.0f", answerFloat);
+                textViewAnswer.setText("");
+                history += " = " + " " + answer + "\n";
+                textViewHistory.append(history);
+                textViewInput.setText(answer);
+                result.clear();
+
+                result.add(answerFloat);
+
+                input = "";
+                answer = "";
+                //  answer = "";
+
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
+
+    private void clearAll() {
+        result.clear();
+        textViewInput.setText("0");
+        textViewHistory.setText("");
+        textViewAnswer.setText("");
+        input = "";
+        history = "";
+        answer = "";
+    }
+
 
 
 }
