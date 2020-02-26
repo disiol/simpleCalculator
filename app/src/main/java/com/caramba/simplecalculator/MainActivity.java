@@ -518,7 +518,7 @@ public class MainActivity extends AppCompatActivity {
         history = "";
         answer = "";
     }
-
+//TODO manes eqvals
 
 
 }
