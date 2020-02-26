@@ -122,6 +122,7 @@ public class MainActivity extends AppCompatActivity {
         button_multiply = (Button) findViewById(R.id.button_multiply);
         button_minus = (Button) findViewById(R.id.button_minus);
         button_plus = (Button) findViewById(R.id.button_plus);
+        button_equals = (Button) findViewById(R.id.button_equals);
         button_Clear = (Button) findViewById(R.id.button_Clear);
         button_del = (Button) findViewById(R.id.button_del);
         button_interest = (Button) findViewById(R.id.button_interest);
@@ -316,6 +317,23 @@ public class MainActivity extends AppCompatActivity {
 
                 Log.d(TAG, "Нажата кнопка *");
                 break;
+
+            case R.id.button_equals:
+                Log.d(TAG, "Нажата кнопка =");
+                try {
+
+                    if (textViewInput.getText().length() != 0) {
+
+                        calcLogic(EQUALS);
+                    }
+                } catch (Exception e) {
+                    textViewAnswer.setText("Oшибка!");
+                    Log.e(TAG, "ошибка: " + e);
+                }
+
+
+                break;
+
 
             default:
                 break;
