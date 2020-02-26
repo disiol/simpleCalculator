@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="layout_height_text_view">25dp</dimen>
+    <dimen name="layout_width_button">100dp</dimen>
+    <dimen name="layout_height_button">100dp</dimen>
+    <dimen name="dp">1dp</dimen>
+    <dimen name="marginTextView">2dp</dimen>
+    <dimen name="button_size_text">40sp</dimen>
+    <dimen name="layout_marginLeft">20dp</dimen>
+    <dimen name="text_size_land">28sp</dimen>
+    <dimen name="layout_width_button_land">80dp</dimen>
+    <dimen name="layout_height_button_land">80dp</dimen>
+    <dimen name="textSize">40sp</dimen>
+    <dimen name="textSizeAnswer">10sp</dimen>
+    <dimen name="textSize_land">90sp</dimen>
+    <dimen name="marginRight">2dp</dimen>
+    <dimen name="marginLeft">2dp</dimen>
+    <dimen name="answer_history_text_size_land">30sp</dimen>
+    <dimen name="textInputHeight">100dp</dimen>
+    <dimen name="layout_height_v">35dp</dimen>
+    <dimen name="text_view_input_v">60sp</dimen>
+    <dimen name="margin">2dp</dimen>
+    <dimen name="laut_h_l">150dp</dimen>
+    <dimen name="margin_left_s">12dp</dimen>
+    <!--convector-->
+    <dimen name="convector_edit_text_text_size">50dp</dimen>
+    <dimen name="convector_textSize_land">35dp</dimen>
+</resources>

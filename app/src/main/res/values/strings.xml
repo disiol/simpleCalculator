@@ -1,0 +1,49 @@
+<resources>
+    <string name="app_name">CalculatorAndConverterValues</string>
+    <string name="button_divide">/</string>
+    <string name="button_1">1</string>
+    <string name="button_2">2</string>
+    <string name="button_3">3</string>
+    <string name="button_multiply">*</string>
+    <string name="button_4">4</string>
+    <string name="button_5">5</string>
+    <string name="button_6">6</string>
+    <string name="button_minus">-</string>
+    <string name="button_7">7</string>
+    <string name="button_8">8</string>
+    <string name="button_9">9</string>
+    <string name="button_plus">+</string>
+    <string name="button_0">0</string>
+    <string name="button_point">.</string>
+    <string name="button_equals">=</string>
+    <string name="button_Clear">C</string>
+    <string name="button_del"><![CDATA[<-]]></string>
+    <string name="button_00">00</string>
+    <string name="button_interest">%</string>
+
+    <!--main-->
+    <string name="text_calculator">Calculator</string>
+    <string name="convector_of_values">Convector of Values</string>
+    <string name="exit_txt">Exit</string>
+
+    <!--convector-->
+    <string name="title_activity_convector">Convector</string>
+    <string name="title_activity_Calculator">Calculator</string>
+    <string name="convector_edit_text_input"></string>
+    <string name="text_vew_time">Время</string>
+    <string name="radioButton_hours_to_minutes">часы в минуты</string>
+    <string name="radioButton_minutes_to_hours">минуты в часы</string>
+    <string name="radioButton_C_to_F"><![CDATA[C --> F]]></string>
+    <string name="radioButton_F_to_C"><![CDATA[F --> C]]></string>
+    <string name="radioButton_g_to_d"><![CDATA[₴ -->$]]></string>
+    <string name="radioButton_d_to_g"><![CDATA[$ -->₴]]></string>
+    <string name="radioButton_Kg_to_Mg"><![CDATA[Kg --> Mg]]></string>
+    <string name="radioButton_Mg_to_Kg"><![CDATA[Mg --> Kg]]></string>
+    <string name="buttonConvert_text">Конвектировать</string>
+    <string name="button_clear_convectorText">Очистить</string>
+    <string name="text_if_edit_text_is_empty">Введите длину</string>
+    <string name="history">history:</string>
+    <string name="answer">answer:</string>
+
+
+</resources>

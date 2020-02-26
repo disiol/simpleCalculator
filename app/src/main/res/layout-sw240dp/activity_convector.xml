@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.denisimusit.calculatorandconvertervalues.ConvectorActivity">
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:inputType="numberDecimal|numberSigned"
+        android:text="@string/convector_edit_text_input"
+        android:textColor="@color/edit_text_convector_color"
+        android:textSize="@dimen/convector_edit_text_text_size" />
+
+    <RadioGroup
+        android:id="@+id/RadioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/editText"
+        android:orientation="vertical">
+
+        <RadioButton
+            android:id="@+id/radioButtonHourToMinutes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/radioButton_hours_to_minutes"
+            android:textColor="@color/edit_text_convector_color"
+            android:textSize="@dimen/convector_edit_text_text_size" />
+
+        <RadioButton
+            android:id="@+id/radioButtonMinutesToHour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/radioButton_minutes_to_hours"
+            android:textColor="@color/edit_text_convector_color"
+            android:textSize="@dimen/convector_edit_text_text_size" />
+
+        <RadioButton
+            android:id="@+id/radioButtonCToF"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/radioButton_C_to_F"
+            android:textColor="@color/edit_text_convector_color"
+            android:textSize="@dimen/convector_edit_text_text_size" />
+
+        <RadioButton
+            android:id="@+id/radioButtonFToC"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/radioButton_F_to_C"
+            android:textColor="@color/edit_text_convector_color"
+            android:textSize="@dimen/convector_edit_text_text_size" />
+
+        <RadioButton
+            android:id="@+id/radioButtonSToG"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/radioButton_g_to_d"
+            android:textColor="@color/edit_text_convector_color"
+            android:textSize="@dimen/convector_edit_text_text_size" />
+
+        <RadioButton
+            android:id="@+id/radioButtonGToS"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/radioButton_d_to_g"
+            android:textColor="@color/edit_text_convector_color"
+            android:textSize="@dimen/convector_edit_text_text_size" />
+
+        <RadioButton
+            android:id="@+id/radioButtonKgToMg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/radioButton_Kg_to_Mg"
+            android:textColor="@color/edit_text_convector_color"
+            android:textSize="@dimen/convector_edit_text_text_size" />
+
+        <RadioButton
+            android:id="@+id/radioButtonMgToKg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/radioButton_Mg_to_Kg"
+            android:textColor="@color/edit_text_convector_color"
+            android:textSize="@dimen/convector_edit_text_text_size" />
+
+    </RadioGroup>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/RadioGroup"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+         />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="bottom"
+            android:layout_margin="@dimen/dp"
+            android:layout_weight="1"
+            android:background="@color/button_color_convector"
+            android:onClick="onClick"
+            android:text="@string/button_clear_convectorText" />
+    </LinearLayout>
+
+
+</RelativeLayout>

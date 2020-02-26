@@ -1,0 +1,32 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="layout_height_text_view">150dp</dimen>
+    <dimen name="layout_width_button">40dp</dimen>
+    <dimen name="layout_height_button">40dp</dimen>
+    <dimen name="layout_height_text_view_h">50dp</dimen>
+    <dimen name="dp">1dp</dimen>
+    <dimen name="marginTextView">2dp</dimen>
+    <dimen name="textSize_h">50sp</dimen>
+    <dimen name="textSize_batons_h">20sp</dimen>
+    <dimen name="button_size_text">40dp</dimen>
+    <dimen name="layout_marginLeft">20dp</dimen>
+    <dimen name="text_size_land">28sp</dimen>
+    <dimen name="layout_width_button_land">120sp</dimen>
+    <dimen name="layout_height_button_land">120sp</dimen>
+    <dimen name="textSize">70sp</dimen>
+    <dimen name="textSize_land">20sp</dimen>
+    <dimen name="marginRight">2dp</dimen>
+    <dimen name="marginLeft">2dp</dimen>
+    <dimen name="answer_history_text_size_land">10sp</dimen>
+    <dimen name="textInputHeight">100dp</dimen>
+    <dimen name="layout_height_v">200dp</dimen>
+    <dimen name="text_view_input_v">60dp</dimen>
+    <dimen name="margin">2dp</dimen>
+    <dimen name="laut_h_l">150dp</dimen>
+    <dimen name="margin_left_s">12dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="convector_edit_text_text_size">40dp</dimen>
+    <dimen name="convector_textSize_land">35dp</dimen>
+
+
+</resources>
