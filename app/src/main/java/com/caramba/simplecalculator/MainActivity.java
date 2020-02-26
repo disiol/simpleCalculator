@@ -39,6 +39,9 @@ public class MainActivity extends AppCompatActivity {
     private Button button_interest;
     private Button button_point;
 
+    private int operator = DONT_HAWE_OPERATOR;
+    ;
+
 
     /**
      * Результат который заносится в масив для обработки
@@ -55,8 +58,6 @@ public class MainActivity extends AppCompatActivity {
      */
     float number2;
 
-    int currentOperation = 0;
-    int nextOperation;
 
     /**
      * Прибавление
@@ -85,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     final static int CLEAR = 1;
-    final static int DONT_CLEAR = 0;
+    final static int DONT_HAWE_OPERATOR = 0;
 
     int clearCalcDisplay = 0;
 
@@ -95,8 +96,6 @@ public class MainActivity extends AppCompatActivity {
     private String history;//записываетса история
     private String input = "";//записываетса вод
     private String answer;//записываетса ответ
-
-
 
 
     @Override
@@ -122,17 +121,13 @@ public class MainActivity extends AppCompatActivity {
         button_multiply = (Button) findViewById(R.id.button_multiply);
         button_minus = (Button) findViewById(R.id.button_minus);
         button_plus = (Button) findViewById(R.id.button_plus);
-        button_equals = (Button) findViewById(R.id.button_equals);
         button_Clear = (Button) findViewById(R.id.button_Clear);
         button_del = (Button) findViewById(R.id.button_del);
         button_interest = (Button) findViewById(R.id.button_interest);
         button_point = (Button) findViewById(R.id.button_point);
 
 
-
     }
-
-
 
 
     //обробатываем нажатия кнопок
@@ -151,6 +146,8 @@ public class MainActivity extends AppCompatActivity {
                 textViewInput.append("0");
                 input += 0;
                 history += 0;
+                result.add(Float.valueOf("0"));
+
                 break;
 
             case R.id.button_00:
@@ -160,6 +157,8 @@ public class MainActivity extends AppCompatActivity {
                 textViewInput.append("00");
                 input += 00;
                 history += 00;
+                result.add(Float.valueOf("00"));
+
 
                 break;
 
@@ -168,6 +167,8 @@ public class MainActivity extends AppCompatActivity {
                 textViewInput.append("1");// добовляет 1 к  textViewInput
                 input += 1;
                 history += 1;
+                result.add(Float.valueOf("1"));
+
 
                 break;
 
@@ -178,7 +179,7 @@ public class MainActivity extends AppCompatActivity {
                 textViewInput.append("2");
                 input += 2;
                 history += 2;
-
+                result.add(Float.valueOf("2"));
                 break;
 
             case R.id.button_3:
@@ -189,6 +190,9 @@ public class MainActivity extends AppCompatActivity {
 
                 input += 3;
                 history += 3;
+
+                result.add(Float.valueOf("3"));
+
 
                 break;
 
@@ -201,6 +205,9 @@ public class MainActivity extends AppCompatActivity {
 
                 input += 4;
                 history += 4;
+
+                result.add(Float.valueOf("4"));
+
                 break;
 
             case R.id.button_5:
@@ -211,6 +218,9 @@ public class MainActivity extends AppCompatActivity {
 
                 input += 5;
                 history += 5;
+
+                result.add(Float.valueOf("5"));
+
                 break;
 
             case R.id.button_6:
@@ -220,6 +230,9 @@ public class MainActivity extends AppCompatActivity {
                 textViewInput.append("6");
                 input += 6;
                 history += 6;
+
+                result.add(Float.valueOf("6"));
+
                 break;
 
             case R.id.button_7:
@@ -229,6 +242,9 @@ public class MainActivity extends AppCompatActivity {
                 textViewInput.append("7");
                 input += 7;
                 history += 7;
+
+                result.add(Float.valueOf("7"));
+
                 break;
 
             case R.id.button_8:
@@ -238,6 +254,9 @@ public class MainActivity extends AppCompatActivity {
                 textViewInput.append("8");
                 input += 8;
                 history += 8;
+
+                result.add(Float.valueOf("8"));
+
                 break;
 
             case R.id.button_9:
@@ -247,6 +266,9 @@ public class MainActivity extends AppCompatActivity {
                 textViewInput.append("9");
                 input += 9;
                 history += 9;
+
+                result.add(Float.valueOf("9"));
+
                 break;
             case R.id.button_point:
 
@@ -255,7 +277,7 @@ public class MainActivity extends AppCompatActivity {
                 if (input != "") {
                     input += ".";
                     history += ".";
-
+//TODO
                 }
                 break;
 
@@ -274,8 +296,18 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case R.id.button_plus:
-                if (input.length() != 0 ) {
-                    calcLogic(ADD);
+                if (input.length() != 0) {
+                    result.add(Float.valueOf(input));
+                    if (result.size() == 1 && operator == DONT_HAWE_OPERATOR) {
+                        operator = ADD;
+                    } else if (result.size() == 2 && operator != DONT_HAWE_OPERATOR) {
+                        calcLogic(operator);
+
+                    }
+
+                    if (result.size() == 2 && operator == ADD) {
+                        calcLogic(ADD);
+                    }
                 }
                 textViewInput.append("+");
                 history += "+";
@@ -315,22 +347,6 @@ public class MainActivity extends AppCompatActivity {
                 history = "*";
 
                 Log.d(TAG, "Нажата кнопка *");
-                break;
-
-            case R.id.button_equals:
-                Log.d(TAG, "Нажата кнопка =");
-                try {
-
-                    if (textViewInput.getText().length() != 0) {
-
-                        calcLogic(EQUALS);
-                    }
-                } catch (Exception e) {
-                    textViewAnswer.setText("Oшибка!");
-                    Log.e(TAG, "ошибка: " + e);
-                }
-
-
                 break;
 
 
@@ -375,17 +391,9 @@ public class MainActivity extends AppCompatActivity {
 
         try {
 
-            if (input != "") {
-                result.add(Float.valueOf(input));
-            }
 
-            if (operator != EQUALS) {
-                nextOperation = operator;
-            } else if (operator == EQUALS) {
-                nextOperation = 0;
-            }
 
-            switch (currentOperation) {
+            switch (operator) {
 
                 /*Прибавление*/
                 case ADD:
@@ -442,28 +450,11 @@ public class MainActivity extends AppCompatActivity {
 
 
 //            clearCalcDisplay = CLEAR;
-            currentOperation = nextOperation;
-            if (operator == EQUALS) {
-                number1 = 0;
-                number2 = 0;
 
-                answer = String.format("%.0f", result.get(0));
-                textViewAnswer.setText("");
-                history += " = " +" "+ answer + "\n";
-                textViewHistory.append(history);
-                textViewInput.setText(answer);
-                result.removeAll(result);
-                input = "";
-                answer = "";
-                //  answer = "";
-
-            }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
-
 
 
 }
