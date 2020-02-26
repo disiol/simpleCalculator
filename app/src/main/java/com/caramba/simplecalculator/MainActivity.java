@@ -274,8 +274,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case R.id.button_plus:
-                if (input.length() != 0) {
-
+                if (input.length() != 0 ) {
                     calcLogic(ADD);
                 }
                 textViewInput.append("+");
@@ -435,9 +434,7 @@ public class MainActivity extends AppCompatActivity {
                     number2 = result.get(1);
 
                     result.removeAll(result);
-
                     result.add(number1 / number2);
-
                     answer = String.format("%.0f", result.get(0));
                     textViewAnswer.setText(answer);
                     break;
@@ -449,6 +446,7 @@ public class MainActivity extends AppCompatActivity {
             if (operator == EQUALS) {
                 number1 = 0;
                 number2 = 0;
+
                 answer = String.format("%.0f", result.get(0));
                 textViewAnswer.setText("");
                 history += " = " +" "+ answer + "\n";
